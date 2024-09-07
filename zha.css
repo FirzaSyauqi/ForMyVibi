@@ -273,15 +273,17 @@ svg {
 }
 
 .fa-heart {
-    opacity: .3;
-    color: rgb(168, 48, 48);
+    opacity: 0.3;
+    background: linear-gradient(45deg, rgb(183, 0, 0), rgb(255, 255, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /
     font-size: 20px;
     position: fixed;
     animation: heartMove linear 1;
     top: -10vh;
     z-index: 999;
+    text-align: center; /* Menyelaraskan ikon */
 }
-
 @keyframes heartMove {
     0% { transform: translateY(-10vh); }
     100% { transform: translateY(100vh); }
