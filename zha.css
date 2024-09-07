@@ -273,18 +273,26 @@ svg {
 }
 
 .fa-heart {
-    opacity: 0.3;
-    background: linear-gradient(45deg, rgb(183, 0, 0), rgb(255, 255, 255));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; /
     font-size: 20px;
     position: fixed;
-    animation: heartMove linear 1;
+    animation: heartMove linear;
     top: -10vh;
     z-index: 999;
-    text-align: center; /* Menyelaraskan ikon */
 }
+
+.red-heart {
+    color: rgb(183, 0, 0);
+}
+
+.white-heart {
+    color: rgb(255, 255, 255);
+}
+
 @keyframes heartMove {
-    0% { transform: translateY(-10vh); }
-    100% { transform: translateY(100vh); }
+    0% {
+        transform: translateY(-100vh);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
 }
