@@ -274,19 +274,12 @@ svg {
 
 .fa-heart {
     opacity: .3;
+    color: rgb(168, 48, 48);
     font-size: 20px;
     position: fixed;
     animation: heartMove linear 1;
     top: -10vh;
     z-index: 999;
-}
-
-.red-heart {
-    color: rgb(168, 48, 48); /* Merah */
-}
-
-.white-heart {
-    color: rgb(255, 255, 255); /* Putih */
 }
 
 @keyframes heartMove {
