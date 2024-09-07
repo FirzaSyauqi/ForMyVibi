@@ -12,7 +12,7 @@ body {
 }
 
 body::before {
-    content: "\00A9  Zha | ViBi";
+    content: "\00A9  Zha ❤️ ViBi";
     color: white;
     opacity: .5;
     font-size: 10px;
