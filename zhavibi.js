@@ -1,10 +1,11 @@
+// Mendapatkan tanggal dan waktu saat ini
 var date = new Date();
 var days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
 var months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 var hours = date.getHours();
 var minutes = date.getMinutes();
 
-// Tambahkan awalan nol jika jam atau menit kurang dari 10
+// Menambahkan awalan nol jika jam atau menit kurang dari 10
 if (hours < 10) { hours = "0" + hours; }
 if (minutes < 10) { minutes = "0" + minutes; }
 
@@ -15,16 +16,22 @@ var year = date.getFullYear();
 
 console.log(hours + "." + minutes + " WIB - " + day + ", " + dateNum + " " + month + " " + year);
 
+// Menambahkan watermark ke elemen body
 var element = document.querySelector("body");
 var watermark = document.createElement("div");
 
 // Setel teks watermark dan propertinya
 watermark.textContent = day + ", " + dateNum + " " + month + " " + year;
-watermark.style = "color:white;opacity:.5;font-size:10px;position:fixed;bottom:25px;left:25px;z-index:150";
+watermark.style.color = "white";
+watermark.style.opacity = ".5";
+watermark.style.fontSize = "10px";
+watermark.style.position = "fixed";
+watermark.style.bottom = "25px";
+watermark.style.left = "25px";
+watermark.style.zIndex = "150";
 element.appendChild(watermark);
 
-//////////////////////////////////////////////////
-
+// Inisialisasi teks animasi
 var initeksnimasi = document.getElementById("teksnimasi").innerHTML;
 document.getElementById("teksnimasi").innerHTML = "";
 
@@ -41,37 +48,43 @@ function katateksnimasi() {
     }).go();
 }
 
+// Variabel untuk mengontrol alur fungsi
 var fungsi = 0;
 var fungsiklik = 0;
 var skrg = 1;
 var tinggi;
 
 function tes() {
-    if (fungsi == 0) {
+    if (fungsi === 0) {
         playaud();
-        document.getElementById("initom").style = "opacity:0;bottom:0;";
+        document.getElementById("initom").style.opacity = "0";
+        document.getElementById("initom").style.bottom = "0";
         window.scrollBy({ top: tinggi, behavior: 'smooth' });
         fungsi = 1;
         skrg++;
         if (skrg <= 2) { setTimeout(smn, 700); }
-        if (skrg == 3) { setTimeout(katateksnimasi, 500); }
-        if (skrg == 4) { setTimeout(muncultombol, 1200); }
+        if (skrg === 3) { setTimeout(katateksnimasi, 500); }
+        if (skrg === 4) { setTimeout(muncultombol, 1200); }
     }
 }
 
-function smn() { 
-    fungsi = 0; 
-    document.getElementById("initom").style = ""; 
+function smn() {
+    fungsi = 0;
+    document.getElementById("initom").style.opacity = "";
+    document.getElementById("initom").style.bottom = "";
 }
 
-document.getElementById("initom").style = "opacity:0;bottom:0;transition:none";
+document.getElementById("initom").style.opacity = "0";
+document.getElementById("initom").style.bottom = "0";
+document.getElementById("initom").style.transition = "none";
 
-function muncultombol() { 
-    document.getElementById("Tombol").style = "opacity:1;transform:scale(1)"; 
+function muncultombol() {
+    document.getElementById("Tombol").style.opacity = "1";
+    document.getElementById("Tombol").style.transform = "scale(1)";
 }
 
 function aksiakhir() {
-    if (fungsiklik == 0) {
+    if (fungsiklik === 0) {
         fungsiklik = 1;
         setTimeout(katajudul, 100);
     }
@@ -98,7 +111,8 @@ function katakata() {
         cursor: true,
         afterComplete: function () {
             document.getElementById("kalimatakhir").innerHTML = tekskalimatakhir;
-            document.getElementById("judulakhir").style = "opacity:0;transform:scale(0);";
+            document.getElementById("judulakhir").style.opacity = "0";
+            document.getElementById("judulakhir").style.transform = "scale(0)";
             setTimeout(teksmuncul, 350);
             setInterval(berjatuhan, 200);
             setTimeout(kataakhir, 1000);
@@ -108,14 +122,17 @@ function katakata() {
 
 function teksmuncul() {
     document.getElementById("judulakhir").innerHTML = teksjudulakhir2;
-    document.getElementById("judulakhir").style = "font-family:var(--gaya-font3);font-size:27px";
-    document.getElementById("stikerakhir").style = "opacity:0;transform:scale(0)";
+    document.getElementById("judulakhir").style.fontFamily = "var(--gaya-font3)";
+    document.getElementById("judulakhir").style.fontSize = "27px";
+    document.getElementById("stikerakhir").style.opacity = "0";
+    document.getElementById("stikerakhir").style.transform = "scale(0)";
     setTimeout(gantifotoakhir, 400);
 }
 
 function gantifotoakhir() {
     document.getElementById("stikerakhir").src = document.getElementById("stikerakhir2").src;
-    document.getElementById("stikerakhir").style = "";
+    document.getElementById("stikerakhir").style.opacity = "";
+    document.getElementById("stikerakhir").style.transform = "";
 }
 
 function kataakhir() {
@@ -131,19 +148,20 @@ function kataakhir() {
     }).go();
 }
 
-function muncultombol2() { 
-    document.getElementById("TombolIG").style = "opacity:1;transform:scale(1)"; 
+function muncultombol2() {
+    document.getElementById("TombolIG").style.opacity = "1";
+    document.getElementById("TombolIG").style.transform = "scale(1)";
 }
 
 function menuju() {
-    if (fungtom2 == 1) {
+    if (fungtom2 === 1) {
         const instagramUrl = "https://www.instagram.com/aeolus_zha/";
         window.open(instagramUrl, "_blank");
     }
 }
 
-function tentukantinggi() { 
-    tinggi = document.getElementById("iniakhir").offsetHeight; 
+function tentukantinggi() {
+    tinggi = document.getElementById("iniakhir").offsetHeight;
 }
 
 setInterval(tentukantinggi, 200);
@@ -151,15 +169,15 @@ setInterval(tentukantinggi, 200);
 console.log(tinggi);
 
 var fungsiAud = 0;
-function playaud() { 
-    if (fungsiAud == 0) { 
-        fungsiAud = 1; 
-        document.getElementById("linkmp3").play(); 
-    } 
+function playaud() {
+    if (fungsiAud === 0) {
+        fungsiAud = 1;
+        document.getElementById("linkmp3").play();
+    }
 }
 
-function keatas() { 
-    window.scrollTo(0, 0); 
+function keatas() {
+    window.scrollTo(0, 0);
 }
 
 window.addEventListener("load", (event) => {
@@ -168,9 +186,11 @@ window.addEventListener("load", (event) => {
 
     var overlay = document.querySelector(".overlay");
     overlay.style.display = "none";
-    document.getElementById("initom").style = "";
-    document.getElementById("first_stiker").style = "opacity:1;transition:all 2s ease";
+    document.getElementById("initom").style.opacity = "";
+    document.getElementById("first_stiker").style.opacity = "1";
+    document.getElementById("first_stiker").style.transition = "all 2s ease";
 
+    // Inisialisasi ScrollReveal
     ScrollReveal({ reset: true });
     ScrollReveal().reveal(".show-once", { reset: false });
     ScrollReveal().reveal(".title", { duration: 2500, origin: "top", distance: "50px", easing: "cubic-bezier(0.5, 0, 0, 1)", rotate: { x: 20, z: -10 } });
@@ -186,7 +206,8 @@ window.addEventListener("load", (event) => {
         let modifier = 200;
         if (currentScroll + modifier > documentHeight) {
             console.log('Sudah sampai bawah!');
-            document.getElementById("initom").style = "opacity:0;bottom:0";
+            document.getElementById("initom").style.opacity = "0";
+            document.getElementById("initom").style.bottom = "0";
             setTimeout(aksiakhir, 10);
         }
     });
