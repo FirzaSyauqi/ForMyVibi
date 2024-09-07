@@ -23,7 +23,7 @@ body::before {
 }
 
 @keyframes jj {
-    0%  { transform: scale(1.2); }
+    0% { transform: scale(1.2); }
     50% { transform: scale(1.5); }
     100% { transform: scale(1); }
 }
@@ -52,9 +52,6 @@ section {
     align-items: left;
     text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);
     border-top: 1px solid #fff;
-}
-
-section {
     background: #000;
     background-image: var(--bg);
     background-attachment: fixed;
@@ -86,88 +83,206 @@ section > :first-child {
 .stiker {
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
-    z-index: 1;
-    border: 3px solid white;
+    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    width: 90px;
+    height: 90px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    height: 150px;
+    padding: 10px;
+    margin-bottom: 20px;
+    transition: all 1s ease;
 }
 
-.stiker.fade-in {
-    animation: fadeIn 2s ease-in;
+section .wp img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: none;
+    border: none;
 }
 
-.wp {
-    position: relative;
+section .wp::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .7);
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+.lingkar {
+    font-weight: 400;
+    border-bottom: 1px solid #FF0900;
+}
+
+h1, h2, h3, h4, h5 {
     margin: 0;
-}
-
-.wp img {
-    max-width: 100%;
-    display: block;
-}
-
-.title {
-    color: white;
     text-align: center;
-    font-size: 26px;
+    margin: 1rem 0;
 }
 
-h1, h2 {
-    font-family: var(--gaya-font3);
-}
-
-h2 {
-    font-size: 20px;
-}
-
-a.tombol {
-    display: inline-block;
-    padding: 10px;
+p {
     color: white;
-    background: rgba(0,0,0,.5);
-    border: 1px solid white;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
+    font-size: 15px;
+    font-family: var(--gaya-font2);
+    line-height: 1.5em;
+    text-align: center;
 }
 
-#initom {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    opacity: 1;
-    transition: opacity 1s;
-}
-
-#TombolWA {
-    opacity: 0;
-    transition: opacity 1s, transform 1s;
-}
-
-#TombolWA a {
-    display: inline-flex;
-    align-items: center;
-    padding: 10px;
-    background: rgba(0,0,0,.5);
-    color: white;
-    font-size: 13px;
+p.bold {
     font-weight: 700;
-    text-decoration: none;
-    border-radius: 8px;
-    cursor: pointer;
 }
 
-#TombolWA a:hover {
-    background: rgba(0,0,0,.7);
+a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover, a:focus, a:active {
+    color: #f1e8d9;
+}
+
+#hsatu {
+    transition: all .3s ease;
+}
+
+#judulakhir {
+    z-index: 100;
+    font-size: 24px;
+    font-family: var(--gaya-font3);
+    transition: all .5s ease;
+}
+
+#teksnimasi, #kalimatakhir {
+    z-index: 100;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 14px;
+    font-family: var(--gaya-font2);
+}
+
+#teksnimasi {
+    text-align: left;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+.tipeA {
+    font-family: var(--gaya-font);
+}
+
+svg {
+    vertical-align: middle;
+    width: 22px;
+    height: 22px;
+    fill: #fff;
 }
 
 .menu {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    opacity: 1;
-    transition: opacity 1s;
+    position: fixed;
+    bottom: 15vh;
+    width: 100%;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s ease;
+}
+
+.tombol {
+    background-color: rgba(255, 255, 255, .25);
+    border-radius: 50px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+}
+
+.tombol svg {
+    margin: auto;
+    fill: #fff;
+}
+
+#Tombol, #TombolWA {
+    position: relative;
+    opacity: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: left;
+    list-style: none;
+    transition: all 1s ease;
+}
+
+#Tombol a, #TombolWA a {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    margin: 10px;
+    transition: all .2s ease;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid white;
+    border-radius: 8px;
+    line-height: 15px;
+    background: rgba(0, 0, 0, .5);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    box-shadow: rgba(255, 255, 255, 0.15) 0px 7px 29px 0px;
+    z-index: 1;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    z-index: 100;
+}
+
+.loading-message {
+    font-size: 13px;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);
+    color: white;
+    text-align: center;
+}
+
+.fa-heart {
+    opacity: .3;
+    color: white;
+    font-size: 20px;
+    position: fixed;
+    animation: heartMove linear 1;
+    top: -10vh;
+    z-index: 999;
+}
+
+@keyframes heartMove {
+    0% { transform: translateY(-10vh); }
+    100% { transform: translateY(100vh); }
 }
