@@ -281,11 +281,11 @@ svg {
 }
 
 .red-heart {
-    color: rgb(183, 0, 0);
+    color: rgb(224, 83, 83);
 }
 
 .white-heart {
-    color: rgb(255, 255, 255);
+    color: rgb(253, 236, 236);
 }
 
 @keyframes heartMove {
