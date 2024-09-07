@@ -53,6 +53,7 @@ var fungsi = 0;
 var fungsiklik = 0;
 var skrg = 1;
 var tinggi;
+var fungtom2 = 0;  // Menambahkan deklarasi ini untuk menghindari masalah
 
 function tes() {
     if (fungsi === 0) {
