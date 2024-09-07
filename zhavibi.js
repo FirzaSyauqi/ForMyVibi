@@ -25,8 +25,9 @@ element.appendChild(watermark);
 
 //////////////////////////////////////////////////
 
-initeksnimasi = teksnimasi.innerHTML;
-teksnimasi.innerHTML = "";
+var initeksnimasi = document.getElementById("teksnimasi").innerHTML;
+document.getElementById("teksnimasi").innerHTML = "";
+
 function katateksnimasi() {
     new TypeIt("#teksnimasi", {
         strings: ["" + initeksnimasi],
@@ -34,19 +35,21 @@ function katateksnimasi() {
         speed: 55,
         cursor: true,
         afterComplete: function () {
-            teksnimasi.innerHTML = initeksnimasi;
+            document.getElementById("teksnimasi").innerHTML = initeksnimasi;
             setTimeout(smn, 200);
         },
     }).go();
 }
 
-fungsi = 0;
-fungsiklik = 0;
-skrg = 1;
+var fungsi = 0;
+var fungsiklik = 0;
+var skrg = 1;
+var tinggi;
+
 function tes() {
     if (fungsi == 0) {
         playaud();
-        initom.style = "opacity:0;bottom:0;";
+        document.getElementById("initom").style = "opacity:0;bottom:0;";
         window.scrollBy({ top: tinggi, behavior: 'smooth' });
         fungsi = 1;
         skrg++;
@@ -55,15 +58,21 @@ function tes() {
         if (skrg == 4) { setTimeout(muncultombol, 1200); }
     }
 }
-function smn() { fungsi = 0; initom.style = ""; }
-initom.style = "opacity:0;bottom:0;transition:none";
 
-function muncultombol() { fungtom = 1; Tombol.style = "opacity:1;transform:scale(1)"; }
+function smn() { 
+    fungsi = 0; 
+    document.getElementById("initom").style = ""; 
+}
+
+document.getElementById("initom").style = "opacity:0;bottom:0;transition:none";
+
+function muncultombol() { 
+    document.getElementById("Tombol").style = "opacity:1;transform:scale(1)"; 
+}
 
 function aksiakhir() {
     if (fungsiklik == 0) {
         fungsiklik = 1;
-        console.log("aksiakhir dipanggil");
         setTimeout(katajudul, 100);
     }
 }
@@ -75,11 +84,12 @@ function katajudul() {
         speed: 50,
         cursor: true,
         afterComplete: function () {
-            judulakhir.innerHTML = teksjudulakhir;
+            document.getElementById("judulakhir").innerHTML = teksjudulakhir;
             setTimeout(katakata, 400);
         },
     }).go();
 }
+
 function katakata() {
     new TypeIt("#kalimatakhir", {
         strings: ["" + tekskalimatakhir],
@@ -87,22 +97,27 @@ function katakata() {
         speed: 48,
         cursor: true,
         afterComplete: function () {
-            kalimatakhir.innerHTML = tekskalimatakhir;
-            judulakhir.style = "opacity:0;transform:scale(0);";
+            document.getElementById("kalimatakhir").innerHTML = tekskalimatakhir;
+            document.getElementById("judulakhir").style = "opacity:0;transform:scale(0);";
             setTimeout(teksmuncul, 350);
             setInterval(berjatuhan, 200);
             setTimeout(kataakhir, 1000);
         },
     }).go();
 }
+
 function teksmuncul() {
-    judulakhir.innerHTML = teksjudulakhir2;
-    judulakhir.style = "font-family:var(--gaya-font3);font-size:27px";
-    stikerakhir.style = "opacity:0;transform:scale(0)";
+    document.getElementById("judulakhir").innerHTML = teksjudulakhir2;
+    document.getElementById("judulakhir").style = "font-family:var(--gaya-font3);font-size:27px";
+    document.getElementById("stikerakhir").style = "opacity:0;transform:scale(0)";
     setTimeout(gantifotoakhir, 400);
 }
-function jjteksnim() { judulakhir.style.animation = "rto .8s infinite alternate"; }
-function gantifotoakhir() { stikerakhir.src = stikerakhir2.src; stikerakhir.style = ""; }
+
+function gantifotoakhir() {
+    document.getElementById("stikerakhir").src = document.getElementById("stikerakhir2").src;
+    document.getElementById("stikerakhir").style = "";
+}
+
 function kataakhir() {
     new TypeIt("#palingakhir", {
         strings: ["" + tekspalingakhir],
@@ -110,19 +125,16 @@ function kataakhir() {
         speed: 50,
         cursor: true,
         afterComplete: function () {
-            palingakhir.innerHTML = tekspalingakhir;
+            document.getElementById("palingakhir").innerHTML = tekspalingakhir;
             setTimeout(muncultombol2, 500);
         },
     }).go();
 }
+
 function muncultombol2() { 
-    fungtom2 = 1; 
-    const TombolIG = document.getElementById("TombolIG");
-    if (TombolIG) {
-        TombolIG.style.opacity = "1"; 
-        TombolIG.style.transform = "scale(1)";
-    }
+    document.getElementById("TombolIG").style = "opacity:1;transform:scale(1)"; 
 }
+
 function menuju() {
     if (fungtom2 == 1) {
         const instagramUrl = "https://www.instagram.com/aeolus_zha/";
@@ -130,22 +142,35 @@ function menuju() {
     }
 }
 
-tinggi = iniakhir.offsetHeight;
-function tentukantinggi() { tinggi = iniakhir.offsetHeight; }
+function tentukantinggi() { 
+    tinggi = document.getElementById("iniakhir").offsetHeight; 
+}
+
 setInterval(tentukantinggi, 200);
+
 console.log(tinggi);
 
-fungsiAud = 0;
-function playaud() { if (fungsiAud == 0) { fungsiAud = 1; audio.play(); } }
-function keatas() { window.scrollTo(0, 0); }
+var fungsiAud = 0;
+function playaud() { 
+    if (fungsiAud == 0) { 
+        fungsiAud = 1; 
+        document.getElementById("linkmp3").play(); 
+    } 
+}
+
+function keatas() { 
+    window.scrollTo(0, 0); 
+}
+
 window.addEventListener("load", (event) => {
     window.scrollTo(0, 0);
     setTimeout(keatas, 500);
 
     var overlay = document.querySelector(".overlay");
     overlay.style.display = "none";
-    initom.style = "";
-    first_stiker.style = "opacity:1;transition:all 2s ease";
+    document.getElementById("initom").style = "";
+    document.getElementById("first_stiker").style = "opacity:1;transition:all 2s ease";
+
     ScrollReveal({ reset: true });
     ScrollReveal().reveal(".show-once", { reset: false });
     ScrollReveal().reveal(".title", { duration: 2500, origin: "top", distance: "50px", easing: "cubic-bezier(0.5, 0, 0, 1)", rotate: { x: 20, z: -10 } });
@@ -161,7 +186,7 @@ window.addEventListener("load", (event) => {
         let modifier = 200;
         if (currentScroll + modifier > documentHeight) {
             console.log('Sudah sampai bawah!');
-            initom.style = "opacity:0;bottom:0";
+            document.getElementById("initom").style = "opacity:0;bottom:0";
             setTimeout(aksiakhir, 10);
         }
     });
