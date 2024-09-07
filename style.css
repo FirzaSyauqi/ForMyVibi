@@ -2,6 +2,7 @@
     --gaya-font: 'Quicksand', sans-serif;
     --gaya-font2: 'Nunito Sans', sans-serif;
     --gaya-font3: 'Caveat', cursive;
+    --bg: url('path/to/your/background-image.jpg'); /* Ganti dengan path gambar background Anda */
 }
 
 body {
@@ -282,4 +283,13 @@ svg {
 @keyframes heartMove {
     0% { transform: translateY(-10vh); }
     100% { transform: translateY(100vh); }
+}
+
+/* Tambahan untuk ID yang disebutkan di JS */
+#initom {
+    /* Tambahkan styling yang sesuai jika diperlukan */
+}
+
+#first_stiker {
+    /* Tambahkan styling yang sesuai jika diperlukan */
 }
