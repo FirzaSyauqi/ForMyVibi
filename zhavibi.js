@@ -63,6 +63,7 @@ function muncultombol() { fungtom = 1; Tombol.style = "opacity:1;transform:scale
 function aksiakhir() {
     if (fungsiklik == 0) {
         fungsiklik = 1;
+        console.log("aksiakhir dipanggil");
         setTimeout(katajudul, 100);
     }
 }
@@ -114,7 +115,14 @@ function kataakhir() {
         },
     }).go();
 }
-function muncultombol2() { fungtom2 = 1; TombolIG.style = "opacity:1;transform:scale(1)"; }
+function muncultombol2() { 
+    fungtom2 = 1; 
+    const TombolIG = document.getElementById("TombolIG");
+    if (TombolIG) {
+        TombolIG.style.opacity = "1"; 
+        TombolIG.style.transform = "scale(1)";
+    }
+}
 function menuju() {
     if (fungtom2 == 1) {
         const instagramUrl = "https://www.instagram.com/aeolus_zha/";
@@ -156,5 +164,5 @@ window.addEventListener("load", (event) => {
             initom.style = "opacity:0;bottom:0";
             setTimeout(aksiakhir, 10);
         }
-    })
+    });
 });
