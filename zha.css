@@ -12,7 +12,7 @@ body {
 }
 
 body::before {
-    content: "Zha ❤️ ViBi";
+    content: "Zha|ViBi";
     color: white;
     opacity: .5;
     font-size: 10px;
@@ -273,7 +273,7 @@ svg {
 }
 
 .fa-heart {
-    font-size: 20px;
+    font-size: 17px;
     position: fixed;
     animation: heartMove linear;
     top: -10vh;
