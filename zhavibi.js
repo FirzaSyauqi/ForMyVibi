@@ -167,18 +167,22 @@ window.addEventListener("load", (event) => {
     window.scrollTo(0, 0);
     setTimeout(keatas, 500);
 
-    var overlay = document.querySelector(".overlay");
+var overlay = document.querySelector(".overlay");
+setTimeout(function() {
     overlay.style.display = "none";
-    initom.style = "";
-    first_stiker.style = "opacity:1;transition:all 2s ease";
-    ScrollReveal({ reset: true });
-    ScrollReveal().reveal(".show-once", { reset: false });
-    ScrollReveal().reveal(".title", { duration: 2500, origin: "top", distance: "50px", easing: "cubic-bezier(0.5, 0, 0, 1)", rotate: { x: 20, z: -10 } });
-    ScrollReveal().reveal(".fade-in", { delay: 200, duration: 2500, move: 0 });
-    ScrollReveal().reveal(".scaleUp", { duration: 2500, scale: 0.85 });
-    ScrollReveal().reveal(".flip", { delay: 200, duration: 2000, rotate: { x: 20, z: 20 } });
-    ScrollReveal().reveal(".slide-right", { duration: 1000, origin: "left", distance: "300px", easing: "ease-in-out" });
-    ScrollReveal().reveal(".slide-up", { duration: 1500, origin: "bottom", distance: "100px", easing: "cubic-bezier(.37,.01,.74,1)", opacity: 0, scale: 0.5 });
+}, 3000); 
+
+initom.style = "";
+first_stiker.style = "opacity:1;transition:all 2s ease";
+ScrollReveal({ reset: true });
+ScrollReveal().reveal(".show-once", { reset: false });
+ScrollReveal().reveal(".title", { duration: 2500, origin: "top", distance: "50px", easing: "cubic-bezier(0.5, 0, 0, 1)", rotate: { x: 20, z: -10 } });
+ScrollReveal().reveal(".fade-in", { delay: 200, duration: 2500, move: 0 });
+ScrollReveal().reveal(".scaleUp", { duration: 2500, scale: 0.85 });
+ScrollReveal().reveal(".flip", { delay: 200, duration: 2000, rotate: { x: 20, z: 20 } });
+ScrollReveal().reveal(".slide-right", { duration: 1000, origin: "left", distance: "300px", easing: "ease-in-out" });
+ScrollReveal().reveal(".slide-up", { duration: 1500, origin: "bottom", distance: "100px", easing: "cubic-bezier(.37,.01,.74,1)", opacity: 0, scale: 0.5 });
+
 
     document.addEventListener('scroll', function (e) {
         let documentHeight = document.body.scrollHeight;
