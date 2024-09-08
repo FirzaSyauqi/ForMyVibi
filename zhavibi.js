@@ -170,7 +170,7 @@ window.addEventListener("load", (event) => {
 var overlay = document.querySelector(".overlay");
 setTimeout(function() {
     overlay.style.display = "none";
-}, 3000); 
+}, 2500); 
 
 initom.style = "";
 first_stiker.style = "opacity:1;transition:all 2s ease";
