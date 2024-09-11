@@ -94,6 +94,10 @@ body {
   animation: fall 5s linear infinite;
 }
 
+.heart:nth-child(odd) {
+  background-color: pink;
+}
+
 @keyframes fall {
   0% {
     top: -10%;
