@@ -12,20 +12,17 @@ html, body {
 body {
   overflow: hidden;
   display: flex;
-  justify-content: center;
-  align-items: center;
   background: #111;
   perspective: 1000px;
   transform-style: preserve-3d;
-  position: relative;
 }
 
 #drag-container, #spin-container {
   position: relative;
   display: flex;
+  margin: auto;
   transform-style: preserve-3d;
   transform: rotateX(-10deg);
-  margin: auto;
 }
 
 #drag-container img, #drag-container video {
@@ -36,13 +33,12 @@ body {
   width: 100%;
   height: 100%;
   box-shadow: 0 0 8px #fff;
-  transform: rotateY(0deg) translateZ(240px);
-  transition: transform 1s;
-  transition-delay: 0s;
+  box-reflect: below 10px linear-gradient(transparent, transparent, #0005);
 }
 
 #drag-container img:hover, #drag-container video:hover {
   box-shadow: 0 0 15px #fffd;
+  box-reflect: below 10px linear-gradient(transparent, transparent, #0007);
 }
 
 #drag-container p {
@@ -50,7 +46,7 @@ body {
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translate(-50%, -50%) rotateX(90deg);
+  transform: translate(-50%,-50%) rotateX(90deg);
   color: #fff;
 }
 
@@ -60,7 +56,7 @@ body {
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translate(-50%, -50%) rotateX(90deg);
+  transform: translate(-50%,-50%) rotateX(90deg);
   background: radial-gradient(circle, #9993, transparent);
 }
 
@@ -68,26 +64,6 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-}
-
-.heart {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  background-color: red;
-  clip-path: polygon(50% 0%, 61% 6%, 68% 18%, 72% 30%, 70% 43%, 60% 60%, 50% 72%, 40% 60%, 30% 43%, 28% 30%, 32% 18%, 39% 6%);
-  animation: fall linear infinite;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(-100px);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
 }
 
 @keyframes spin {
@@ -108,8 +84,23 @@ body {
   }
 }
 
-@media (max-width: 500px) {
-  #drag-container {
-    transform: rotateX(-5deg);
+/* Animasi hati berjatuhan */
+.heart {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  transform: rotate(45deg);
+  animation: fall 5s linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    top: -10%;
+    opacity: 1;
+  }
+  100% {
+    top: 110%;
+    opacity: 0;
   }
 }
