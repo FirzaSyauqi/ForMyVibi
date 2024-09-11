@@ -125,7 +125,7 @@ function createHeart() {
   // Acak warna hati antara merah dan merah muda
   heart.style.backgroundColor = Math.random() > 0.5 ? 'red' : 'pink';
 
-  document.getElementById('heart-container').appendChild(heart);
+  document.body.appendChild(heart);
 
   setTimeout(() => {
     heart.remove();
