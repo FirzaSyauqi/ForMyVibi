@@ -1,28 +1,28 @@
-// Variabel untuk pengaturan carousel
-var radius = 240;
-var autoRotate = true;
-var rotateSpeed = -60;
-var imgWidth = 120;
-var imgHeight = 170;
+var radius = 240; // Diameter lingkaran
+var autoRotate = true; // Rotasi otomatis atau tidak
+var rotateSpeed = -60; // Satuan: detik/360 derajat
+var imgWidth = 80; // Lebar gambar (unit: px)
+var imgHeight = 120; // Tinggi gambar (unit: px)
 
-// Link musik latar
+// Link musik latar belakang - set 'null' jika tidak ingin memutar musik latar belakang
 var bgMusicURL = 'https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/JustTheTwoOfUs.mp3';
-var bgMusicControls = true;
+var bgMusicControls = true; // Tampilkan kontrol musik
 
-// Inisialisasi carousel setelah 1 detik
+// ===================== start =======================
+// animasi dimulai setelah 1000 milidetik
 setTimeout(init, 1000);
 
 var odrag = document.getElementById('drag-container');
 var ospin = document.getElementById('spin-container');
 var aImg = ospin.getElementsByTagName('img');
 var aVid = ospin.getElementsByTagName('video');
-var aEle = [...aImg, ...aVid];
+var aEle = [...aImg, ...aVid]; // gabungkan 2 array
 
 // Ukuran gambar
 ospin.style.width = imgWidth + "px";
 ospin.style.height = imgHeight + "px";
 
-// Ukuran ground
+// Ukuran ground - bergantung pada radius
 var ground = document.getElementById('ground');
 ground.style.width = radius * 3 + "px";
 ground.style.height = radius * 3 + "px";
@@ -36,30 +36,39 @@ function init(delayTime) {
 }
 
 function applyTransform(obj) {
+  // Batasi sudut kamera (antara 0 dan 180)
   if(tY > 180) tY = 180;
   if(tY < 0) tY = 0;
+
+  // Terapkan sudut
   obj.style.transform = "rotateX(" + (-tY) + "deg) rotateY(" + (tX) + "deg)";
 }
 
 function playSpin(yes) {
-  ospin.style.animationPlayState = (yes ? 'running' : 'paused');
+  ospin.style.animationPlayState = (yes?'running':'paused');
 }
 
-var sX, sY, nX, nY, desX = 0, desY = 0, tX = 0, tY = 10;
+var sX, sY, nX, nY, desX = 0,
+    desY = 0,
+    tX = 0,
+    tY = 10;
 
+// auto spin
 if (autoRotate) {
   var animationName = (rotateSpeed > 0 ? 'spin' : 'spinRevert');
   ospin.style.animation = `${animationName} ${Math.abs(rotateSpeed)}s infinite linear`;
 }
 
+// tambahkan musik latar belakang
 if (bgMusicURL) {
   document.getElementById('music-container').innerHTML += `
-  <audio src="${bgMusicURL}" ${bgMusicControls ? 'controls' : ''} autoplay loop>
-    <p>If you are reading this, it is because your browser does not support the audio element.</p>
-  </audio>`;
+<audio src="${bgMusicURL}" ${bgMusicControls? 'controls': ''} autoplay loop>    
+<p>If you are reading this, it is because your browser does not support the audio element.</p>
+</audio>
+`;
 }
 
-// Acara untuk kontrol drag
+// setup events
 document.onpointerdown = function (e) {
   clearInterval(odrag.timer);
   e = e || window.event;
@@ -96,22 +105,4 @@ document.onpointerdown = function (e) {
   return false;
 };
 
-document.onmousewheel = function(e) {
-  e = e || window.event;
-  var d = e.wheelDelta / 20 || -e.detail;
-  radius += d;
-  init(1);
-};
-
-// Membuat hati berjatuhan
-function createHeart() {
-  var heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.style.left = Math.random() * 100 + 'vw';
-  heart.style.animationDuration = (Math.random() * 2 + 3) + 's'; // Durasi antara 3-5 detik
-  document.getElementById('heart-container').appendChild(heart);
-  setTimeout(() => heart.remove(), 5000);
-}
-
-// Interval untuk membuat hati setiap setengah detik
-setInterval(createHeart, 500);
+document.onmousewheel
