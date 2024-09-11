@@ -1,8 +1,8 @@
-var radius = 240; // Diameter lingkaran
+var radius = 320; // Radius lingkaran yang lebih besar untuk mengakomodasi lebih banyak gambar
 var autoRotate = true; // Rotasi otomatis atau tidak
 var rotateSpeed = -60; // Satuan: detik/360 derajat
-var imgWidth = 80; // Lebar gambar (unit: px)
-var imgHeight = 120; // Tinggi gambar (unit: px)
+var imgWidth = 60; // Lebar gambar (unit: px)
+var imgHeight = 80; // Tinggi gambar (unit: px)
 
 // Link musik latar belakang - set 'null' jika tidak ingin memutar musik latar belakang
 var bgMusicURL = 'https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/JustTheTwoOfUs.mp3';
@@ -24,8 +24,8 @@ ospin.style.height = imgHeight + "px";
 
 // Ukuran ground - bergantung pada radius
 var ground = document.getElementById('ground');
-ground.style.width = radius * 3 + "px";
-ground.style.height = radius * 3 + "px";
+ground.style.width = radius * 2 + "px"; // Diameter lingkaran
+ground.style.height = radius * 2 + "px"; // Diameter lingkaran
 
 function init(delayTime) {
   for (var i = 0; i < aEle.length; i++) {
@@ -105,4 +105,34 @@ document.onpointerdown = function (e) {
   return false;
 };
 
-document.onmousewheel
+document.onmousewheel = function(e) {
+  e = e || window.event;
+  var d = e.wheelDelta / 20 || -e.detail;
+  radius += d;
+  init(1);
+};
+
+// fungsi untuk menambahkan hati berjatuhan
+function createFallingHearts() {
+  var container = document.getElementById('heart-container');
+  var colors = ['#FF0000', '#FF69B4']; // Warna hati
+
+  function randomIntFromRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function randomColor() {
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+
+  for (var i = 0; i < 20; i++) {
+    var heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.backgroundColor = randomColor();
+    heart.style.left = randomIntFromRange(0, window.innerWidth) + 'px';
+    heart.style.animationDuration = randomIntFromRange(5, 10) + 's';
+    container.appendChild(heart);
+  }
+}
+
+createFallingHearts();
