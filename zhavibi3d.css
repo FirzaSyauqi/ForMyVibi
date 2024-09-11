@@ -40,8 +40,8 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  width: 80px; /* Ukuran gambar yang disesuaikan */
-  height: 120px; /* Ukuran gambar yang disesuaikan */
+  width: 60px; /* Ukuran gambar yang disesuaikan */
+  height: 80px; /* Ukuran gambar yang disesuaikan */
   line-height: 200px;
   font-size: 50px;
   text-align: center;
@@ -67,8 +67,8 @@ body {
 }
 
 #ground {
-  width: 720px; /* Diameter lingkaran yang disesuaikan */
-  height: 720px; /* Diameter lingkaran yang disesuaikan */
+  width: 800px; /* Diameter lingkaran yang disesuaikan */
+  height: 800px; /* Diameter lingkaran yang disesuaikan */
   position: absolute;
   top: 100%;
   left: 50%;
@@ -83,50 +83,10 @@ body {
   left: 0;
 }
 
-@-webkit-keyframes spin {
-  from{
-    -webkit-transform: rotateY(0deg);
-            transform: rotateY(0deg);
-  } to{
-    -webkit-transform: rotateY(360deg);
-            transform: rotateY(360deg);
-  }
-}
-
-@keyframes spin {
-  from{
-    -webkit-transform: rotateY(0deg);
-            transform: rotateY(0deg);
-  } to{
-    -webkit-transform: rotateY(360deg);
-            transform: rotateY(360deg);
-  }
-}
-
-@-webkit-keyframes spinRevert {
-  from{
-    -webkit-transform: rotateY(360deg);
-            transform: rotateY(360deg);
-  } to{
-    -webkit-transform: rotateY(0deg);
-            transform: rotateY(0deg);
-  }
-}
-
-@keyframes spinRevert {
-  from{
-    -webkit-transform: rotateY(360deg);
-            transform: rotateY(360deg);
-  } to{
-    -webkit-transform: rotateY(0deg);
-            transform: rotateY(0deg);
-  }
-}
-
 .heart {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 20px; /* Ukuran hati */
+  height: 20px; /* Ukuran hati */
   background-color: red;
   background-image: radial-gradient(circle, red 40%, transparent 40%),
                     radial-gradient(circle, red 40%, transparent 40%);
