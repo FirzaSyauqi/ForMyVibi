@@ -1,8 +1,11 @@
+var radius = 240; // Tambahkan deklarasi radius
+
 var autoRotate = true; // Memastikan rotasi otomatis aktif
 var rotateSpeed = -60; // Kecepatan rotasi
 var imgWidth = 100; // Lebar gambar (dapat disesuaikan)
 var imgHeight = 150; // Tinggi gambar (dapat disesuaikan)
 
+var ospin = document.getElementById('spin-container');
 if (autoRotate) {
     var animationName = (rotateSpeed > 0 ? 'spin' : 'spinRevert');
     ospin.style.animation = `${animationName} ${Math.abs(rotateSpeed)}s infinite linear`;
@@ -39,10 +42,10 @@ function init(delayTime) {
   }
 }
 
-function applyTranform(obj) {
+function applyTransform(obj) {
   // Membatasi sudut kamera (antara 0 dan 180)
-  if (tY > 180) tY = 180;
-  if (tY < 0) tY = 0;
+  if(tY > 180) tY = 180;
+  if(tY < 0) tY = 0;
 
   // Terapkan sudut
   obj.style.transform = "rotateX(" + (-tY) + "deg) rotateY(" + (tX) + "deg)";
@@ -87,7 +90,7 @@ document.onpointerdown = function(e) {
     desY = nY - sY;
     tX += desX * 0.1;
     tY += desY * 0.1;
-    applyTranform(odrag);
+    applyTransform(odrag);
     sX = nX;
     sY = nY;
   };
@@ -98,7 +101,7 @@ document.onpointerdown = function(e) {
       desY *= 0.95;
       tX += desX * 0.1;
       tY += desY * 0.1;
-      applyTranform(odrag);
+      applyTransform(odrag);
       playSpin(false);
       if (Math.abs(desX) < 0.5 && Math.abs(desY) < 0.5) {
         clearInterval(odrag.timer);
