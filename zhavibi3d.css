@@ -77,22 +77,27 @@ body {
 }
 
 @keyframes spin {
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(360deg);
-  }
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
 }
 
 @keyframes spinRevert {
-  from {
-    transform: rotateY(360deg);
-  }
-  to {
-    transform: rotateY(0deg);
-  }
+    from {
+        transform: rotateY(360deg);
+    }
+    to {
+        transform: rotateY(0deg);
+    }
 }
+
+#spin-container {
+    animation: spin 60s infinite linear;
+}
+
 
 /* GitHub corner animation */
 .github-corner:hover .octo-arm {
