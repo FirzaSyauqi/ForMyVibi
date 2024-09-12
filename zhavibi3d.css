@@ -6,14 +6,15 @@
 html,
 body {
   height: 100%;
-  touch-action: none; /* for touch screen */
+  /* for touch screen */
+  touch-action: none; 
 }
 
 body {
   overflow: hidden;
   display: flex;
   background: #111;
-  perspective: 1500px;
+  perspective: 1000px;
   transform-style: preserve-3d;
 }
 
@@ -26,8 +27,8 @@ body {
 }
 
 #spin-container {
-  width: 120px; /* Adjusted size of spin container */
-  height: 180px; /* Adjusted size of spin container */
+  width: 100px; /* Disesuaikan untuk gambar kecil */
+  height: 150px; /* Disesuaikan untuk gambar kecil */
   animation: spin 60s infinite linear; /* Auto-rotate */
 }
 
@@ -36,8 +37,8 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  width: 60px; /* Reduced image size */
-  height: 90px; /* Reduced image size */
+  width: 50px; /* Ukuran gambar lebih kecil */
+  height: 75px; /* Ukuran gambar lebih kecil */
   line-height: 200px;
   font-size: 50px;
   text-align: center;
@@ -60,8 +61,8 @@ body {
 }
 
 #ground {
-  width: 1200px;
-  height: 1200px;
+  width: 900px;
+  height: 900px;
   position: absolute;
   top: 100%;
   left: 50%;
@@ -90,5 +91,31 @@ body {
   }
   to {
     transform: rotateY(0deg);
+  }
+}
+
+/* GitHub corner animation */
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+
+@media (max-width:500px) {
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
   }
 }
