@@ -28,6 +28,7 @@ body {
 #spin-container {
   width: 120px; /* Adjusted size of spin container */
   height: 180px; /* Adjusted size of spin container */
+  animation: spin 60s infinite linear; /* Auto-rotate */
 }
 
 #drag-container img, #drag-container video {
