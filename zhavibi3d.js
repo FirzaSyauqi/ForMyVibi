@@ -1,8 +1,12 @@
-var radius = 320; // Menambah radius untuk mengatur jarak antar gambar
-var autoRotate = true; // Agar carousel berputar otomatis
-var rotateSpeed = -60; // Kecepatan putaran, semakin kecil semakin cepat (unit: detik/360 derajat)
-var imgWidth = 60; // Lebar gambar lebih kecil (unit: px)
-var imgHeight = 90; // Tinggi gambar lebih kecil (unit: px)
+var autoRotate = true; // Memastikan rotasi otomatis aktif
+var rotateSpeed = -60; // Kecepatan rotasi
+var imgWidth = 100; // Lebar gambar (dapat disesuaikan)
+var imgHeight = 150; // Tinggi gambar (dapat disesuaikan)
+
+if (autoRotate) {
+    var animationName = (rotateSpeed > 0 ? 'spin' : 'spinRevert');
+    ospin.style.animation = `${animationName} ${Math.abs(rotateSpeed)}s infinite linear`;
+}
 
 // Link dari musik latar belakang - gunakan 'null' jika tidak ingin memainkan musik
 var bgMusicURL = 'https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/JustTheTwoOfUs.mp3';
