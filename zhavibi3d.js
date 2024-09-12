@@ -41,7 +41,7 @@ function applyTranform(obj) {
 }
 
 function playSpin(yes) {
-  ospin.style.animationPlayState = (yes?'running':'paused');
+  ospin.style.animationPlayState = (yes ? 'running' : 'paused');
 }
 
 var sX, sY, nX, nY, desX = 0,
