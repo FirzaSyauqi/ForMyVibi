@@ -1,7 +1,6 @@
-
 var radius = 300; // how big of the radius
 var autoRotate = true; // auto rotate or not
-var rotateSpeed = -90; // unit: seconds/360 degrees
+var rotateSpeed = -120; // unit: seconds/360 degrees
 var imgWidth = 100; // width of images (unit: px)
 var imgHeight = 160; // height of images (unit: px)
 
@@ -9,10 +8,8 @@ var imgHeight = 160; // height of images (unit: px)
 var bgMusicURL = 'https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/beautiful.mp3';
 var bgMusicControls = true; // Show UI music control
 
-
-
 // ===================== start =======================
-// animation start after 1000 miliseconds
+// animation start after 1000 milliseconds
 setTimeout(init, 1000);
 
 var odrag = document.getElementById('drag-container');
@@ -40,21 +37,21 @@ function init(delayTime) {
 
 function applyTranform(obj) {
   // Constrain the angle of camera (between 0 and 180)
-  if(tY > 180) tY = 180;
-  if(tY < 0) tY = 0;
+  if (tY > 180) tY = 180;
+  if (tY < 0) tY = 0;
 
   // Apply the angle
   obj.style.transform = "rotateX(" + (-tY) + "deg) rotateY(" + (tX) + "deg)";
 }
 
 function playSpin(yes) {
-  ospin.style.animationPlayState = (yes?'running':'paused');
+  ospin.style.animationPlayState = (yes ? 'running' : 'paused');
 }
 
 var sX, sY, nX, nY, desX = 0,
-    desY = 0,
-    tX = 0,
-    tY = 10;
+  desY = 0,
+  tX = 0,
+  tY = 10;
 
 // auto spin
 if (autoRotate) {
@@ -62,13 +59,19 @@ if (autoRotate) {
   ospin.style.animation = `${animationName} ${Math.abs(rotateSpeed)}s infinite linear`;
 }
 
-// add background music
+// add background music with 'muted' initially for autoplay compliance
 if (bgMusicURL) {
   document.getElementById('music-container').innerHTML += `
-<audio src="${bgMusicURL}" ${bgMusicControls? 'controls': ''} autoplay loop>    
-<p>If you are reading this, it is because your browser does not support the audio element.</p>
-</audio>
-`;
+    <audio id="bgMusic" src="${bgMusicURL}" ${bgMusicControls ? 'controls' : ''} autoplay loop muted>    
+      <p>If you are reading this, it is because your browser does not support the audio element.</p>
+    </audio>
+  `;
+  
+  // Unmute the audio after the page loads
+  window.addEventListener('load', function() {
+    var audio = document.getElementById('bgMusic');
+    audio.muted = false; // Unmute once the page has loaded
+  });
 }
 
 // setup events
@@ -76,12 +79,12 @@ document.onpointerdown = function (e) {
   clearInterval(odrag.timer);
   e = e || window.event;
   var sX = e.clientX,
-      sY = e.clientY;
+    sY = e.clientY;
 
   this.onpointermove = function (e) {
     e = e || window.event;
     var nX = e.clientX,
-        nY = e.clientY;
+      nY = e.clientY;
     desX = nX - sX;
     desY = nY - sY;
     tX += desX * 0.1;
@@ -110,7 +113,7 @@ document.onpointerdown = function (e) {
   return false;
 };
 
-document.onmousewheel = function(e) {
+document.onmousewheel = function (e) {
   e = e || window.event;
   var d = e.wheelDelta / 20 || -e.detail;
   radius += d;
