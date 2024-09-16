@@ -6,6 +6,7 @@ var imgHeight = 160; // height of images (unit: px)
 
 // Link of background music - set 'null' if you dont want to play background music
 var bgMusicURL = 'https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/beautiful.mp3';
+var bgMusicControls = true; // Show UI music control
 
 // ===================== start =======================
 // animation start after 1000 milliseconds
@@ -58,10 +59,10 @@ if (autoRotate) {
   ospin.style.animation = `${animationName} ${Math.abs(rotateSpeed)}s infinite linear`;
 }
 
-// add background music without controls and autoplay
+// add background music with 'muted' initially for autoplay compliance
 if (bgMusicURL) {
   document.getElementById('music-container').innerHTML += `
-    <audio id="bgMusic" src="${bgMusicURL}" autoplay loop style="display:none;">
+    <audio id="bgMusic" src="${bgMusicURL}" ${bgMusicControls ? 'controls' : ''} autoplay loop muted>    
       <p>If you are reading this, it is because your browser does not support the audio element.</p>
     </audio>
   `;
@@ -72,11 +73,12 @@ if (bgMusicURL) {
     audio.muted = false; // Unmute once the page has loaded
     audio.play().catch(error => {
       console.log('Autoplay was prevented:', error);
+      // Optionally, show a UI element to let users play the audio manually
     });
   });
 }
 
-// setup events for dragging to rotate the carousel
+// setup events
 document.onpointerdown = function (e) {
   clearInterval(odrag.timer);
   e = e || window.event;
@@ -115,7 +117,6 @@ document.onpointerdown = function (e) {
   return false;
 };
 
-// zoom in/out with mouse scroll
 document.onmousewheel = function (e) {
   e = e || window.event;
   var d = e.wheelDelta / 20 || -e.detail;
