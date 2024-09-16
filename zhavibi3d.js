@@ -67,10 +67,14 @@ if (bgMusicURL) {
     </audio>
   `;
   
-  // Unmute the audio after the page loads
+  // Attempt to play the audio and unmute after the page loads
   window.addEventListener('load', function() {
     var audio = document.getElementById('bgMusic');
     audio.muted = false; // Unmute once the page has loaded
+    audio.play().catch(error => {
+      console.log('Autoplay was prevented:', error);
+      // Optionally, show a UI element to let users play the audio manually
+    });
   });
 }
 
