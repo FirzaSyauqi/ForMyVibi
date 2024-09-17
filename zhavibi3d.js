@@ -4,7 +4,7 @@ var rotateSpeed = -80; // unit: seconds/360 degrees
 var imgWidth = 100; // width of images (unit: px)
 var imgHeight = 160; // height of images (unit: px)
 
-// Link of background music - set 'null' if you dont want to play background music
+// Link of background music - set 'null' if you don't want to play background music
 var bgMusicURL = 'https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/beautiful.mp3';
 var bgMusicControls = true; // Show UI music control
 
@@ -117,9 +117,44 @@ document.onpointerdown = function (e) {
   return false;
 };
 
+// Wheel event for zoom in/out on desktop
 document.onmousewheel = function (e) {
   e = e || window.event;
   var d = e.wheelDelta / 20 || -e.detail;
   radius += d;
   init(1);
 };
+
+// ===================== Mobile Pinch-to-Zoom Start =====================
+var initialDistance = 0;
+var initialRadius = radius;
+
+// Fungsi untuk menghitung jarak antara dua titik sentuh
+function getDistance(touches) {
+  var dx = touches[0].clientX - touches[1].clientX;
+  var dy = touches[0].clientY - touches[1].clientY;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+// Event listener untuk mulai menyentuh layar (2 jari untuk pinch)
+document.addEventListener('touchstart', function (e) {
+  if (e.touches.length === 2) {
+    initialDistance = getDistance(e.touches);
+    initialRadius = radius;
+  }
+});
+
+// Event listener untuk pinch (zoom in/out)
+document.addEventListener('touchmove', function (e) {
+  if (e.touches.length === 2) {
+    var currentDistance = getDistance(e.touches);
+    var distanceChange = currentDistance - initialDistance;
+    
+    // Ubah radius berdasarkan perubahan jarak
+    radius = initialRadius + distanceChange * 0.1; // Sesuaikan nilai zoom (0.1 adalah kecepatan zoom)
+    
+    init(1); // Apply perubahan radius ke gambar
+    e.preventDefault(); // Mencegah scroll atau zoom default di browser
+  }
+});
+// ===================== Mobile Pinch-to-Zoom End =====================
