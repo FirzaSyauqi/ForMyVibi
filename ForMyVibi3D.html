@@ -256,13 +256,23 @@
             100% { color: rgba(255, 255, 255, 0.5); } /* Warna redup */
         }
 
-        p1 {
-            white-space: nowrap;
-            font-size: 2em;
-            font-family: 'Caveat', cursive;
-            font-weight: bold;
-            animation: flicker 1.5s infinite; /* Animasi kedip */
+        .p1 {
+        white-space: nowrap;
+        font-size: 2em;
+        font-family: 'Caveat', cursive;
+        font-weight: bold;
+        animation: flicker 1.5s infinite; /* Animasi kedip */
+    }
+
+    /* Tambahkan animasi flicker */
+    @keyframes flicker {
+        0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+            opacity: 1;
         }
+        20%, 24%, 55% {
+            opacity: 0;
+        }
+    }
     </style>
 </head>
 <body>
