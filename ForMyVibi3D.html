@@ -189,27 +189,27 @@
     cursor: pointer; /* Kursor pointer saat mouse melayang di atas tombol */
     position: absolute;
     bottom: 12px; /* Posisi tombol berada di bawah */
-    left: 40%; /* Posisi tengah horizontal */
+    left: 50%; /* Posisi tengah horizontal */
     transition: background-color 0.3s ease, color 0.3s ease;
     display: flex;
     justify-content: center; /* Untuk menempatkan teks di tengah */
     align-items: center; /* Untuk menempatkan teks di tengah */
-    width: 40px; /* Lebar tombol */
-    height: 40px; /* Tinggi tombol */
-    font-family: 'Playfair Display', serif;
+    width: 35px; /* Lebar tombol */
+    height: 35px; /* Tinggi tombol */
+    font-family: 'Caveat', cursive;
     font-weight: bold;
 }
 
     #playButton:before {
         content: '\2764'; /* Unicode untuk love icon */
-        font-size: 1.8rem; /* Ukuran ikon love */
+        font-size: 1.6rem; /* Ukuran ikon love */
         position: absolute;
     }
 
     #playButton span {
     position: relative;
     z-index: 1; /* Agar teks tampil di atas ikon */
-    font-size: 0.4rem; /* Ukuran teks */
+    font-size: 0.3rem; /* Ukuran teks */
     color: white; /* Teks berwarna putih */
 }
 
@@ -237,7 +237,7 @@
         font-size: 0.7rem; /* Ukuran lirik */
         color: white;
         opacity: 0.8;
-        font-family: 'Playfair Display', serif;
+        font-family: 'Caveat', cursive;
         font-weight: bold;
         animation: fall linear forwards;
     }
@@ -256,10 +256,10 @@
             100% { color: rgba(255, 255, 255, 0.5); } /* Warna redup */
         }
 
-        p {
+        p1 {
             white-space: nowrap;
             font-size: 2em;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Caveat', cursive;
             font-weight: bold;
             animation: flicker 1.5s infinite; /* Animasi kedip */
         }
@@ -282,7 +282,7 @@
             <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/12.jpg" alt="">
             <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/13.jpg" alt="">
             <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/14.jpg" alt="">
-            <p>HBD MY VIBI 🎂❤️</p>
+            <p class="P1">HBD MY VIBI 🎂❤️</p>
 
         </div>
         <div id="ground"></div>
