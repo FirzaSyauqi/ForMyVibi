@@ -146,6 +146,8 @@
                 animation: octocat-wave 560ms ease-in-out;
             }
         }
+
+    
         .red-heart, .white-heart {
         position: fixed;
         bottom: 100%;
@@ -272,13 +274,53 @@
         }
         20%, 24%, 55% {
             opacity: 0;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-        }
+        }  
     }
-    </style>
+    #zoomInButton, #zoomOutButton {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 1rem; /* Same size for zoom buttons */
+    padding: 8px 12px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    text-align: center;
+}
+
+#zoomOutButton {
+    top: 50px; /* Adjusted position */
+}
+
+#rotateButton {
+    position: fixed;
+    top: 90px; /* Adjusted position */
+    right: 10px;
+    font-size: 0.9rem; /* Smaller font size for rotate button */
+    padding: 6px 10px; /* Smaller padding for rotate button */
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    text-align: center;
+}
+
+@keyframes rotateCarousel {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+
+</style>
 </head>
 <body>
     <div id="drag-container">
@@ -309,8 +351,11 @@
 
   <!-- Tombol Play -->
   <button id="playButton" onclick="togglePlay()">
-    <span>Klik!</span>
-</button>
+  <span>Klik!</span></button>
+  <button id="zoomInButton" onclick="zoomIn()">+</button>
+  <button id="zoomOutButton" onclick="zoomOut()">−</button>
+  <button id="rotateButton" onclick="toggleRotationDirection()">⟳</button>
+
 
 
   <script>
@@ -398,13 +443,52 @@
           return false;
       };
 
-      // Fungsi zoom carousel menggunakan roda mouse
-      document.onmousewheel = function (e) {
-          e = e || window.event;
-          var d = e.wheelDelta / 20 || -e.detail;
-          radius += d;
-          init(1);
-      };
+      let initialDistance = null;
+let isPinching = false;
+
+function getDistance(touch1, touch2) {
+    return Math.sqrt(
+        Math.pow(touch2.clientX - touch1.clientX, 2) +
+        Math.pow(touch2.clientY - touch1.clientY, 2)
+    );
+}
+
+// Pinch-to-zoom di perangkat seluler
+document.addEventListener("touchstart", function(e) {
+    if (e.touches.length === 2) {
+        isPinching = true;
+        initialDistance = getDistance(e.touches[0], e.touches[1]);
+    }
+});
+
+document.addEventListener("touchmove", function(e) {
+    if (isPinching && e.touches.length === 2) {
+        let currentDistance = getDistance(e.touches[0], e.touches[1]);
+        let delta = currentDistance - initialDistance;
+
+        // Atur sensitifitas zoom
+        radius += delta * 0.1;
+        init(1); // Update posisi gambar carousel
+
+        // Simpan jarak saat ini untuk perhitungan berikutnya
+        initialDistance = currentDistance;
+    }
+});
+
+document.addEventListener("touchend", function(e) {
+    if (e.touches.length < 2) {
+        isPinching = false;
+        initialDistance = null;
+    }
+});
+
+// Fungsi zoom dengan roda mouse untuk desktop
+document.onmousewheel = function (e) {
+    e = e || window.event;
+    var d = e.wheelDelta / 20 || -e.detail;
+    radius += d;
+    init(1);
+};
 
       // Efek jatuh hati
       function berjatuhan() {
@@ -479,7 +563,38 @@ function createFallingWishes() {
     }, 8000); 
 }
 
-// Panggil fungsi createFallingWishes secara berkala
-setInterval(createFallingWishes, 3000); // 
+    // Panggil fungsi createFallingWishes secara berkala
+    setInterval(createFallingWishes, 3000); // 
+    // Fungsi untuk Zoom In
+    function zoomIn() {
+        radius -= 20; // Kurangi radius untuk zoom in
+        init(1);      // Panggil fungsi init untuk mengatur ulang posisi elemen
+    }
+
+    // Fungsi untuk Zoom Out
+    function zoomOut() {
+        radius += 20; // Tambah radius untuk zoom out
+        init(1);      // Panggil fungsi init untuk mengatur ulang posisi elemen
+    }
+    // Variabel untuk menyimpan arah rotasi
+let isRotatingClockwise = false; // Default arah rotasi: counter-clockwise
+
+// Fungsi untuk mengubah arah rotasi
+function toggleRotationDirection() {
+    // Ubah arah rotasi
+    isRotatingClockwise = !isRotatingClockwise;
+
+    // Tentukan kecepatan dan arah rotasi berdasarkan nilai isRotatingClockwise
+    let rotationDirection = isRotatingClockwise ? 1 : -1;
+    let rotationSpeed = -70; // Kecepatan rotasi yang diinginkan
+
+    // Update animasi untuk elemen ospin (carousel)
+    ospin.style.animation = `rotateCarousel ${Math.abs(rotationSpeed)}s infinite linear`;
+    
+    // Update arah rotasi (putar searah jarum jam atau berlawanan arah jarum jam)
+    ospin.style.animationDirection = rotationDirection === 1 ? 'normal' : 'reverse';
+}
 
 </script>
+</body>
+</html>
