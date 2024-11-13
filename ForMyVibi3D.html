@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hbd My ViBi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            /* for touch screen */
+            touch-action: none;
+        }
+
+        body {
+            overflow: hidden;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            background: #111;
+            -webkit-perspective: 1000px;
+                    perspective: 1000px;
+            -webkit-transform-style: preserve-3d;
+                    transform-style: preserve-3d;
+        }
+
+        #drag-container, #spin-container {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin: auto;
+            -webkit-transform-style: preserve-3d;
+                    transform-style: preserve-3d;
+            -webkit-transform: rotateX(-10deg);
+                    transform: rotateX(-10deg);
+        }
+
+        #drag-container img, #drag-container video {
+            -webkit-transform-style: preserve-3d;
+                    transform-style: preserve-3d;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 80%;
+            height: 80%;
+            line-height: 200px;
+            font-size: 50px;
+            text-align: center;
+            -webkit-box-shadow: 0 0 8px #fff;
+                    box-shadow: 0 0 8px #fff;
+            -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0005);
+        }
+
+        #drag-container img:hover, #drag-container video:hover {
+            -webkit-box-shadow: 0 0 15px #fffd;
+                    box-shadow: 0 0 15px #fffd;
+            -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0007);
+        }
+
+        #drag-container p {
+            font-family: Serif;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            -webkit-transform: translate(-50%,-50%) rotateX(90deg);
+                    transform: translate(-50%,-50%) rotateX(90deg);
+            color: #fff;
+        }
+
+        #ground {
+            width: 900px;
+            height: 900px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            -webkit-transform: translate(-50%,-50%) rotateX(90deg);
+                    transform: translate(-50%,-50%) rotateX(90deg);
+            background: -webkit-radial-gradient(center center, farthest-side , #9993, transparent);
+        }
+
+        @-webkit-keyframes spin {
+            from {
+                -webkit-transform: rotateY(0deg);
+                        transform: rotateY(0deg);
+            }
+            to {
+                -webkit-transform: rotateY(360deg);
+                        transform: rotateY(360deg);
+            }
+        }
+
+        @keyframes spin {
+            from {
+                -webkit-transform: rotateY(0deg);
+                        transform: rotateY(0deg);
+            }
+            to {
+                -webkit-transform: rotateY(360deg);
+                        transform: rotateY(360deg);
+            }
+        }
+
+        @-webkit-keyframes spinRevert {
+            from {
+                -webkit-transform: rotateY(360deg);
+                        transform: rotateY(360deg);
+            }
+            to {
+                -webkit-transform: rotateY(0deg);
+                        transform: rotateY(0deg);
+            }
+        }
+
+        @keyframes spinRevert {
+            from {
+                -webkit-transform: rotateY(360deg);
+                        transform: rotateY(360deg);
+            }
+            to {
+                -webkit-transform: rotateY(0deg);
+                        transform: rotateY(0deg);
+            }
+        }
+
+        .github-corner:hover .octo-arm {
+            animation: octocat-wave 560ms ease-in-out;
+        }
+
+        @keyframes octocat-wave {
+            0%, 100% { transform: rotate(0); }
+            20%, 60% { transform: rotate(-25deg); }
+            40%, 80% { transform: rotate(10deg); }
+        }
+
+        @media (max-width:500px) {
+            .github-corner:hover .octo-arm {
+                animation: none;
+            }
+            .github-corner .octo-arm {
+                animation: octocat-wave 560ms ease-in-out;
+            }
+        }
+        .red-heart, .white-heart {
+            position: fixed;
+            bottom: 100%;
+            font-size: 2rem;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .red-heart {
+            color: red;
+        }
+
+        .white-heart {
+            color: white;
+            opacity: 0.6;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .red-heart, .white-heart {
+            animation: fall linear forwards;
+        }
+            
+        
+    /* Tombol Love */
+
+#playButton {
+    background-color: white; /* Warna putih saat pertama kali */
+    color: red; /* Warna teks merah */
+    font-size: 1rem; /* Ukuran font */
+    padding: 20px; /* Padding di sekitar teks */
+    border: none;
+    border-radius: 50%; /* Membuat tombol berbentuk love */
+    cursor: pointer; /* Kursor pointer saat mouse melayang di atas tombol */
+    position: absolute;
+    bottom: 12px; /* Posisi tombol berada di bawah */
+    left: 47.5%; /* Posisi tengah horizontal */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    justify-content: center; /* Untuk menempatkan teks di tengah */
+    align-items: center; /* Untuk menempatkan teks di tengah */
+    width: 60px; /* Lebar tombol */
+    height: 60px; /* Tinggi tombol */
+    font-family: 'Arial', sans-serif; /* Menggunakan font standar */
+}
+
+    #playButton:before {
+        content: '\2764'; /* Unicode untuk love icon */
+        font-size: 2.5rem; /* Ukuran ikon love */
+        position: absolute;
+    }
+
+    #playButton span {
+        position: relative;
+        z-index: 1; /* Agar teks tampil di atas ikon */
+        font-size: 0.8rem; /* Ukuran teks */
+        color: white; /* Teks berwarna merah saat pertama kali */
+    }
+
+    /* Tombol yang sudah diklik */
+    #playButton.clicked {
+        background-color: red; /* Mengubah background menjadi merah setelah tombol diklik */
+        color: white; /* Mengubah teks menjadi putih setelah tombol diklik */
+    }
+
+    /* Tombol saat dihover */
+    #playButton:hover {
+        transform: scale(1.1); /* Membesarkan tombol saat hover */
+    }
+
+    /* Efek lirik berjatuhan */
+#lyricsContainer {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    pointer-events: none; /* Agar tidak menghalangi interaksi dengan tombol */
+}
+
+.lyric {
+    position: absolute;
+    font-size: 0.7rem; /* Ukuran lirik */
+    color: white;
+    opacity: 0.8;
+    font-family: 'Dancing Script', cursive;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+#footer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1rem;
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    opacity: 0.7;
+    padding: 5px 15px;
+}
+    </style>
+</head>
+<body>
+    <div id="drag-container">
+        <div id="spin-container">
+            <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/1.jpg" alt="">
+            <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/2.jpg" alt="">
+            <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/3.jpg" alt="">
+            <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/4.jpg" alt="">
+            <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/5.jpg" alt="">
+            <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/6.jpg" alt="">
+            <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/7.jpg" alt="">
+            <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/8.jpg" alt="">
+            <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/9.jpg" alt="">
+            <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/10.jpg" alt="">
+            <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/11.jpg" alt="">
+            <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/12.jpg" alt="">
+            <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/13.jpg" alt="">
+            <img src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/14.jpg" alt="">
+            <p style="white-space: nowrap; font-size: 2em; color: #fff;">HBD MY VIBI 🎂❤️</p>
+        </div>
+        <div id="ground"></div>
+    </div>
+    <!-- Audio dengan atribut autoplay dan muted -->
+  <!-- Audio tanpa atribut muted -->
+  <audio id="audioPlayer" src="https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/beautiful.mp3" loop></audio>
+  <div id="lyricsContainer"></div> <!-- Tempat lirik akan ditampilkan -->
+
+  <!-- Tombol Play -->
+  <button id="playButton" onclick="togglePlay()">
+    <span>Klik!</span>
+</button>
+<div id="footer">@Zha</div>
+
+  <script>
+      // Inisialisasi variabel untuk efek carousel
+      var radius = 250; 
+      var autoRotate = true;
+      var rotateSpeed = -70; 
+      var imgWidth = 100; 
+      var imgHeight = 160;
+
+      setTimeout(init, 1000);
+
+      var odrag = document.getElementById('drag-container');
+      var ospin = document.getElementById('spin-container');
+      var aImg = ospin.getElementsByTagName('img');
+      var aVid = ospin.getElementsByTagName('video');
+      var aEle = [...aImg, ...aVid];
+
+      ospin.style.width = imgWidth + "px";
+      ospin.style.height = imgHeight + "px";
+
+      var ground = document.getElementById('ground');
+      ground.style.width = radius * 3 + "px";
+      ground.style.height = radius * 3 + "px";
+
+      // Inisialisasi carousel
+      function init(delayTime) {
+          for (var i = 0; i < aEle.length; i++) {
+              aEle[i].style.transform = "rotateY(" + (i * (360 / aEle.length)) + "deg) translateZ(" + radius + "px)";
+              aEle[i].style.transition = "transform 1s";
+              aEle[i].style.transitionDelay = delayTime || (aEle.length - i) / 4 + "s";
+          }
+      }
+
+      function applyTranform(obj) {
+          if (tY > 180) tY = 180;
+          if (tY < 0) tY = 0;
+          obj.style.transform = "rotateX(" + (-tY) + "deg) rotateY(" + (tX) + "deg)";
+      }
+
+      function playSpin(yes) {
+          ospin.style.animationPlayState = (yes ? 'running' : 'paused');
+      }
+
+      var sX, sY, nX, nY, desX = 0, desY = 0, tX = 0, tY = 10;
+
+      if (autoRotate) {
+          var animationName = (rotateSpeed > 0 ? 'spin' : 'spinRevert');
+          ospin.style.animation = `${animationName} ${Math.abs(rotateSpeed)}s infinite linear`;
+      }
+
+      document.onpointerdown = function (e) {
+          clearInterval(odrag.timer);
+          e = e || window.event;
+          var sX = e.clientX, sY = e.clientY;
+
+          this.onpointermove = function (e) {
+              e = e || window.event;
+              var nX = e.clientX, nY = e.clientY;
+              desX = nX - sX;
+              desY = nY - sY;
+              tX += desX * 0.1;
+              tY += desY * 0.1;
+              applyTranform(odrag);
+              sX = nX;
+              sY = nY;
+          };
+
+          this.onpointerup = function (e) {
+              odrag.timer = setInterval(function () {
+                  desX *= 0.95;
+                  desY *= 0.95;
+                  tX += desX * 0.1;
+                  tY += desY * 0.1;
+                  applyTranform(odrag);
+                  playSpin(false);
+                  if (Math.abs(desX) < 0.5 && Math.abs(desY) < 0.5) {
+                      clearInterval(odrag.timer);
+                      playSpin(true);
+                  }
+              }, 17);
+              this.onpointermove = this.onpointerup = null;
+          };
+
+          return false;
+      };
+
+      // Fungsi zoom carousel menggunakan roda mouse
+      document.onmousewheel = function (e) {
+          e = e || window.event;
+          var d = e.wheelDelta / 20 || -e.detail;
+          radius += d;
+          init(1);
+      };
+
+      // Efek jatuh hati
+      function berjatuhan() {
+          const redHeart = document.createElement("div");
+          redHeart.className = "fas fa-heart red-heart";
+          redHeart.style.left = (Math.random() * 90) + "vw";
+          redHeart.style.animationDuration = (Math.random() * 3) + 2 + "s";
+
+          const whiteHeart = document.createElement("div");
+          whiteHeart.className = "fas fa-heart white-heart";
+          whiteHeart.style.left = (Math.random() * 90) + "vw";
+          whiteHeart.style.animationDuration = (Math.random() * 3) + 2 + "s";
+
+          document.body.appendChild(redHeart);
+          document.body.appendChild(whiteHeart);
+
+          setTimeout(() => redHeart.remove(), 5000);
+          setTimeout(() => whiteHeart.remove(), 5000);
+      }
+
+      setInterval(berjatuhan, 500);
+    
+    var isPlaying = false;
+    var audio = new Audio('https://raw.githubusercontent.com/FirzaSyauqi/ForMyVibi/main/beautiful.mp3'); // Audio file
+
+// Fungsi untuk toggle play/pause dan mengubah warna tombol
+function togglePlay() {
+    var playButton = document.getElementById('playButton');
+    
+    if (isPlaying) {
+        audio.pause(); // Berhenti memutar audio
+        playButton.classList.remove('clicked'); // Menghapus kelas "clicked" untuk kembali ke warna merah
+    } else {
+        audio.play(); // Mulai memutar audio
+        playButton.classList.add('clicked'); // Menambahkan kelas "clicked" untuk mengubah warna tombol menjadi putih
+    }
+
+    isPlaying = !isPlaying; // Mengubah status apakah audio sedang diputar
+}
+var birthdayWishes = [
+    "Happy Birthday!",
+    "Wishing you happiness!",
+    "Enjoy your special day!",
+    "May your year be bright!",
+    "Stay blessed and joyful!",
+    "Have an awesome year ahead!",
+    "Best wishes always!",
+    "Celebrate and be happy!",
+    "Lots of love to you!"
+];
+
+
+// Fungsi untuk memunculkan ucapan ulang tahun secara acak
+function createFallingWishes() {
+    var wishText = birthdayWishes[Math.floor(Math.random() * birthdayWishes.length)]; // Pilih ucapan secara acak
+    var wishDiv = document.createElement('div');
+    wishDiv.className = 'lyric';
+    wishDiv.textContent = wishText;
+
+    // Posisi acak untuk ucapan
+    wishDiv.style.left = Math.random() * 100 + 'vw'; // Posisi horizontal acak
+
+    // Durasi animasi acak
+    wishDiv.style.animationDuration = (Math.random() * 3 + 2) + 's';
+
+    // Tambahkan ucapan ke dalam container
+    document.getElementById('lyricsContainer').appendChild(wishDiv);
+
+    // Hapus ucapan setelah animasi selesai
+    setTimeout(function() {
+        wishDiv.remove();
+    }, 5000); // Ucapan akan dihapus setelah 5 detik
+}
+
+// Panggil fungsi createFallingWishes secara berkala
+setInterval(createFallingWishes, 3000); // Interval 200ms untuk menambahkan ucapan
+
+
+</script>
