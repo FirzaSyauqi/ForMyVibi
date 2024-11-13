@@ -180,8 +180,8 @@
     /* Tombol Love */
 
 #playButton {
-    background-color: white; /* Warna putih saat pertama kali */
-    color: red; /* Warna teks merah */
+    background-color: red; /* Warna putih saat pertama kali */
+    color: white; /* Warna teks merah */
     font-size: 1rem; /* Ukuran font */
     padding: 20px; /* Padding di sekitar teks */
     border: none;
@@ -196,7 +196,7 @@
     align-items: center; /* Untuk menempatkan teks di tengah */
     width: 60px; /* Lebar tombol */
     height: 60px; /* Tinggi tombol */
-    font-family: 'Arial', sans-serif; /* Menggunakan font standar */
+    font-family: 'Dawning of a New Day', cursive; font-weight: bold; /* Menggunakan font standar */
 }
 
     #playButton:before {
@@ -206,18 +206,17 @@
     }
 
     #playButton span {
-        position: relative;
-        z-index: 1; /* Agar teks tampil di atas ikon */
-        font-size: 0.8rem; /* Ukuran teks */
-        color: white; /* Teks berwarna merah saat pertama kali */
-    }
+    position: relative;
+    z-index: 1; /* Agar teks tampil di atas ikon */
+    font-size: 0.8rem; /* Ukuran teks */
+    color: red; /* Teks berwarna putih */
+}
 
-    /* Tombol yang sudah diklik */
-    #playButton.clicked {
-        background-color: red; /* Mengubah background menjadi merah setelah tombol diklik */
-        font-size: 0rem; /* Ukuran teks */
-        color: white; /* Mengubah teks menjadi putih setelah tombol diklik */
-    }
+/* Tombol yang sudah diklik */
+#playButton.clicked span {
+    visibility: hidden; /* Menyembunyikan teks setelah tombol diklik */
+    /* atau bisa menggunakan opacity: 0; */
+}
 
     /* Tombol saat dihover */
     #playButton:hover {
@@ -237,7 +236,7 @@
         font-size: 0.7rem; /* Ukuran lirik */
         color: white;
         opacity: 0.8;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Dawning of a New Day', cursive; font-weight: bold;
         animation: fall linear forwards;
     }
 
@@ -258,7 +257,7 @@
         p {
             white-space: nowrap;
             font-size: 2em;
-            font-family: 'Pacifico', cursive; font-weight: bold;
+            font-family:'Dancing Script', cursive;
             animation: flicker 1.5s infinite; /* Animasi kedip */
         }
     </style>
