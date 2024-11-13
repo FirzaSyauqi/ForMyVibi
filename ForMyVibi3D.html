@@ -147,21 +147,26 @@
             }
         }
         .red-heart, .white-heart {
-            position: fixed;
-            bottom: 100%;
-            font-size: 2rem;
-            opacity: 0.8;
-            pointer-events: none;
+        position: fixed;
+        bottom: 100%;
+        font-size: 1.5rem; /* Kurangi ukuran font untuk memperkecil hati */
+        opacity: 0.8;
+        pointer-events: none;
         }
 
-        .red-heart {
-            color: red;
-        }
 
+       .red-heart {
+        font-size: 1.5rem; /* Ukuran untuk heart merah */
+        color: red;
+        opacity: 0.8;
+        }
+        
         .white-heart {
+            font-size: 1rem; /* Ukuran untuk heart putih */
             color: white;
             opacity: 0.6;
         }
+
 
         @keyframes fall {
             to {
