@@ -443,7 +443,7 @@ function createFallingWishes() {
     wishDiv.style.left = Math.random() * 100 + 'vw'; // Posisi horizontal acak
 
     // Durasi animasi acak
-    wishDiv.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    wishDiv.style.animationDuration = (Math.random() * 5 + 5) + 's';
 
     // Tambahkan ucapan ke dalam container
     document.getElementById('lyricsContainer').appendChild(wishDiv);
@@ -451,11 +451,10 @@ function createFallingWishes() {
     // Hapus ucapan setelah animasi selesai
     setTimeout(function() {
         wishDiv.remove();
-    }, 5000); // Ucapan akan dihapus setelah 5 detik
+    }, 8000); 
 }
 
 // Panggil fungsi createFallingWishes secara berkala
-setInterval(createFallingWishes, 3000); // Interval 200ms untuk menambahkan ucapan
-
+setInterval(createFallingWishes, 3000); // 
 
 </script>
