@@ -10,26 +10,7 @@
 
 
     <style>
-        p { 
-        white-space: nowrap;
-        font-size: 2em;
-        font-family: 'Caveat', cursive;
-        font-weight: bold;
-        animation: flicker 1.5s infinite; /* Animasi kedip */
-    }
-
-    @keyframes flicker {
-        0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-            opacity: 1;
-        }
-        20%, 24%, 55% {
-            opacity: 0;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
+     
         html, body {
             height: 100%;
             /* for touch screen */
@@ -271,6 +252,25 @@
             0% { color: rgba(255, 255, 255, 0.5); } /* Warna redup */
             50% { color: rgba(255, 255, 255, 1); } /* Warna terang */
             100% { color: rgba(255, 255, 255, 0.5); } /* Warna redup */
+        }
+       p { 
+        white-space: nowrap;
+        font-size: 2em;
+        font-family: 'Caveat', cursive;
+        font-weight: bold;
+        animation: flicker 1.5s infinite; /* Animasi kedip */
+    }
+
+    @keyframes flicker {
+        0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+            opacity: 1;
+        }
+        20%, 24%, 55% {
+            opacity: 0;
+        }
+        * {
+            margin: 0;
+            padding: 0;
         }
     }
     </style>
